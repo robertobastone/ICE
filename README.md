@@ -1,5 +1,5 @@
-# PICK
-Python Italy Coronavirus Knot (PICK)
+# ICE
+Italy Covid19 Epidemic (ICE) is a Python routine to keep track of the ongoing 2019-20 coronavirus pandemic in Italy.
 
 # Milestones
 1. March, 14 2020:
@@ -12,12 +12,14 @@ Python Italy Coronavirus Knot (PICK)
 ### Version 1.00 (March, 14 2020)
 - minimally functioning code
 ### Version 1.01 (March, 15 2020)
--  
+- code written according to the
+### Version 1.02 (March, 21 2020)
+- Added a daily increment and relative daily increment (%) subplots
 
 # How to run the script
 ## From terminal
 - type in python in your terminal then:
 ```
-import PrimeHunter
-PrimeHunter.PrimeHunter().hunter()
+import ICE
+ICE.ICE().main()
 ```
