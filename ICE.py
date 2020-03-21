@@ -3,16 +3,16 @@
 author = 'Roberto Bastone'
 email = 'robertobastone93@gmail.com'
 
-version = 1.01
+version = 1.02
 
 ######################### LIBRARIES #########################
 from termcolor import colored # customize ui
 import loadData as loading
 import plotData as plotting
 
-class PICK:
+class ICE:
     def __init__(self):
-        print(colored("Initializing... Python Italy Covid19 Knot version " + str(version), 'blue'))
+        print(colored("Initializing... Italy Covid19 Epidemic version " + str(version), 'blue'))
         print(colored("(Author: " + author+')', 'blue'))
         print(colored("For info - or anything else - please, feel free to reach me at " + email, 'blue'))
 
