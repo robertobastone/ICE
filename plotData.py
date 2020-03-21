@@ -49,6 +49,7 @@ class plotData:
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         plt.tight_layout()
         plt.savefig(filename, bbox_inches='tight',dpi=400)
+        print(colored(region[idx] + " plotted ", 'blue'))
 
     def gettingDailyIncrement(self,table,region,dates,idx):
         dailyIncrementsList = []

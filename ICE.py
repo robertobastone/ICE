@@ -18,8 +18,8 @@ class ICE:
 
     def main(self):
         l = loading.loadData()
-        p = plotting.plotData()
         table, region, dates = l.main()
         print(colored("Loading completed.", 'blue'))
+        p = plotting.plotData()
         for i in range(0,len(region)):
             p.main(table, region, dates, i)
