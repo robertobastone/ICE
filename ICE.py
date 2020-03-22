@@ -3,7 +3,7 @@
 author = 'Roberto Bastone'
 email = 'robertobastone93@gmail.com'
 
-version = 1.02
+version = 1.03
 
 ######################### LIBRARIES #########################
 from termcolor import colored # customize ui
@@ -17,9 +17,12 @@ class ICE:
         print(colored("For info - or anything else - please, feel free to reach me at " + email, 'blue'))
 
     def main(self):
-        l = loading.loadData()
-        table, region, dates = l.main()
-        print(colored("Loading completed.", 'blue'))
-        p = plotting.plotData()
-        for i in range(0,len(region)):
-            p.main(table, region, dates, i)
+        try:
+            l = loading.loadData()
+            table, region, dates = l.main()
+            print(colored("Loading completed.", 'blue'))
+            p = plotting.plotData()
+            for i in range(0,len(region)):
+                p.main(table, region, dates, i)
+        except Exception as e:
+            print(colored("Loading data failed", 'red'))
