@@ -3,10 +3,11 @@
 author = 'Roberto Bastone'
 email = 'robertobastone93@gmail.com'
 
-version = 1.03
+version = 1.04
 
 ######################### LIBRARIES #########################
 from termcolor import colored # customize ui
+import sys # better management of the exceptions
 import loadData as loading
 import plotData as plotting
 
@@ -19,10 +20,11 @@ class ICE:
     def main(self):
         try:
             l = loading.loadData()
-            table, region, dates = l.main()
+            table, region, dates, datesInMillisecond = l.main()
             print(colored("Loading completed.", 'blue'))
             p = plotting.plotData()
             for i in range(0,len(region)):
-                p.main(table, region, dates, i)
+                p.main(table, region, dates, datesInMillisecond, i)
         except Exception as e:
-            print(colored("Loading data failed", 'red'))
+            print(colored("The following exception was catched: " + str(e), 'red'))
+            print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
