@@ -89,14 +89,16 @@ class plotData:
     def plotLogistGrowthFit(self,xdata,ydata):
         try:
             popt, pcov = curve_fit(self.sigmoid, xdata, ydata)
-            # print(colored(str(popt), 'blue'))
-            # print(colored(str(pcov), 'blue'))
+            # pcov is the estimated covariance matrix of popt
+            # the diagonals provide the variance of the parameter estimate
+            perr = np.sqrt(np.diag(pcov))
             with open('results.csv', 'w') as csvfile:
                 filewriter = csv.writer(csvfile, delimiter=',',
                                                  quotechar='|',
                                                  quoting=csv.QUOTE_MINIMAL)
+                filewriter.writerow(['Parameter', 'Estimate', '1sigma'])
                 for i in range(0,len(popt)):
-                    filewriter.writerow([alphabet[i], popt[i]])
+                    filewriter.writerow([alphabet[i], popt[i], perr[i]])
             return popt, pcov
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
