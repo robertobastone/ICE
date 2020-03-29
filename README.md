@@ -1,6 +1,6 @@
 # ICE
 Italy Covid19 Epidemic (ICE) is a Python routine to keep track of the ongoing 2019-20 coronavirus pandemic in Italy. In the fit of the total cases I have employed a logistic growth fit[1] with three parameters, a, b and c:
-<img src=https://render.githubusercontent.com/render/math?math=y(t)=\frac{a}{1%20%2B%20be^{-ct}}>
+<img src="https://render.githubusercontent.com/render/math?math=y(t)=\frac{a}{1%20%2B%20be^{-ct}}">
  which is commonly used to fit pandemics growth and the parameters that define the function are stored in the csv file "results.csv". As of 29th March, the results show that:
  - a = 95000 ± 2000
  - b = 710 ± 60
