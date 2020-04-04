@@ -18,9 +18,20 @@ class loadData:
             print(colored(str(e), 'red'))
             print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
 
-    def main(self):
+    def activeCases(self):
         try:
-            table = pd.read_excel(dataLocation) # open table
+            table = pd.read_excel(dataLocation,sheet_name='activeCases') # open table
+            tableColumns = table.columns.ravel()
+            dates = tableColumns[1:] # create dates array
+            region = table['Region'] # create region array
+            return table, region, dates
+        except Exception as e:
+            print(colored("The following exception was catched:" + str(e), 'red'))
+            print(colored("Make sure you have " + dataLocation + " in the same directory of the ICE bundle.", 'red'))
+
+    def totalCases(self):
+        try:
+            table = pd.read_excel(dataLocation,sheet_name='totalCases') # open table
             tableColumns = table.columns.ravel()
             dates = tableColumns[1:] # create dates array
             datesInMillisecond = self.fromDatetimeToMillisecond(dates)

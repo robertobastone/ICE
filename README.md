@@ -6,19 +6,18 @@ Italy Covid19 Epidemic (ICE) is a Python routine to keep track of the ongoing 20
 
  which is commonly used to fit pandemics growth and the parameters that define the function are stored in the csv file "results.csv".
 
- As of 29th March, the results show that:
- - a = 95000 ± 2000
- - b = 710 ± 60
- - c = 0.181 ± 0.003
+ As of 4th of April, the results show that:
+ - a = 135900 ± 1500
+ - b = 790 ± 50
+ - c = 00.177 ± 0.002
 
 # Disclaimers
 
 ## Dataset
-It is imperative to stress that the data regarding the cured must be fully understood. The italia "Protezione Civile" considers as "cured", those who have healed (i.e. tested negative for CoViD-19 twice) or have been discharged (i.e. have been tested negative for the virus once), and which does not mean the person is indeed cured) [3]. 
+It is imperative to stress that the data regarding the cured must be fully understood. The italia "Protezione Civile" considers as "cured", those who have healed (i.e. tested negative for CoViD-19 twice) or have been discharged (i.e. have been tested negative for the virus once), and which does not mean the person is indeed cured) [3].
 
 ## Purpose
-This is not meant to be a predictive model, I would not dare to be so arrogant to even think my simple model could predict when Italy will reach the apex of the so well known "curve" of contagions. It is simply a way for me to cope and rationalize this pandemic.
-
+This is not meant to be a predictive model, I would not dare to be so arrogant to even think my simple model could predict when Italy will reach the apex of the well known "curve". It is simply a way for me to cope and rationalize this pandemic.
 
 # Milestones
 1. March, 14 2020:
@@ -38,6 +37,8 @@ This is not meant to be a predictive model, I would not dare to be so arrogant t
 - Added try/exception statements
 ### Version 1.04 (March, 28 2020)
 - Improved try/exception statements and added logistic fit to overall national cases.
+### Version 1.05 (April, 4 2020)
+- Added cured, deceases and total number of cases (active cases + cured + deceased). The logistic fit is now done on the former data and managed in a different package.
 
 # How to run the script
 ## From terminal
@@ -46,7 +47,7 @@ This is not meant to be a predictive model, I would not dare to be so arrogant t
 import ICE
 ICE.ICE().main()
 ```
-- During the execution of the script, a new folder named "plots" will be created/updated with the plots of the regional (20 plots) and the overall national (1 plot) cases.
+- During the execution of the script, two folders named "activeCases" and "totalCases" will be created/updated with the plots of the regional (20 plots), the overall national (1 plot) cases, the total cured (1 plot), the number of those deceased and the overall cases nation wide (cured, still fighting against the virus and those passed away).
 
 # References
 - [1] http://www.protezionecivile.gov.it/media-comunicazione/comunicati-stampa

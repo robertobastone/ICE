@@ -20,11 +20,14 @@ class ICE:
     def main(self):
         try:
             l = loading.loadData()
-            table, region, dates, datesInMillisecond = l.main()
+            table_1, region, dates = l.activeCases()
+            table_2, groups, dates, datesInMillisecond = l.totalCases()
             print(colored("Loading completed.", 'blue'))
             p = plotting.plotData()
             for i in range(0,len(region)):
-                p.main(table, region, dates, datesInMillisecond, i)
+                p.plotActiveCases(table_1, region, dates, i)
+            for i in range(0,len(groups)):
+                p.plotTotalCases(table_2, groups, dates, datesInMillisecond, i)
         except Exception as e:
             print(colored("The following exception was catched: " + str(e), 'red'))
             print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
