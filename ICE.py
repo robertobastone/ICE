@@ -3,7 +3,7 @@
 author = 'Roberto Bastone'
 email = 'robertobastone93@gmail.com'
 
-version = 1.04
+version = 1.06
 
 ######################### LIBRARIES #########################
 from termcolor import colored # customize ui
@@ -28,6 +28,10 @@ class ICE:
                 p.plotActiveCases(table_1, region, dates, i)
             for i in range(0,len(groups)):
                 p.plotTotalCases(table_2, groups, dates, datesInMillisecond, i)
+                if (groups[i] == 'Total number of cases'):
+                    p.plotEvolutionOfSigmoidParameter(table_2.iloc[i][1:], datesInMillisecond)
+            print(colored("Fitting completed.", 'blue'))
+            print(colored("Plotting completed.", 'blue'))
         except Exception as e:
             print(colored("The following exception was catched: " + str(e), 'red'))
             print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))

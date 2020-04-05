@@ -42,3 +42,20 @@ class fitData:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             print(colored("The following exception was catched: " + str(e), 'red'))
             print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
+
+    def keepTrackOfSigmoidParameterEvolution(self, xdata, ydata):
+        try:
+            offset = 17
+            poptList = []
+            pcovList = []
+            numberOfDays = []
+            for i in range(0,len(xdata)-offset):
+                popt, pcov = curve_fit(self.sigmoid_1, xdata[:offset+i], ydata[:offset+i])
+                poptList.append(popt)
+                pcovList.append(np.sqrt(np.diag(pcov)))
+                numberOfDays.append(offset+i)
+            return poptList, pcovList, numberOfDays
+        except Exception as e:
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            print(colored("The following exception was catched: " + str(e), 'red'))
+            print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
