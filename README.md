@@ -8,9 +8,9 @@ Italy Covid19 Epidemic (ICE) is a Python routine to keep track of the ongoing 20
 
  As of 4th of April, the results show that:
  c,0.17097782948739057,0.002746561661504229
- - a = 141000 ± 2000
- - b = 700 ± 60
- - c = 00.171 ± 0.003
+ - a = 151000 ± 2000
+ - b = 540 ± 50
+ - c = 0.160 ± 0.003
 
 # Disclaimers
 
