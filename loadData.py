@@ -35,7 +35,7 @@ class loadData:
             tableColumns = table.columns.ravel()
             dates = tableColumns[1:] # create dates array
             datesInMillisecond = self.fromDatetimeToMillisecond(dates)
-            region = table['Region'] # create region array
+            region = table['Groups'] # create region array
             return table, region, dates, datesInMillisecond
         except Exception as e:
             print(colored("The following exception was catched:" + str(e), 'red'))
