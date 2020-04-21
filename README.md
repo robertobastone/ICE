@@ -6,10 +6,10 @@ Italy Covid19 Epidemic (ICE) is a Python routine to keep track of the ongoing 20
 
  which is commonly used to fit pandemics growth and the parameters that define the function are stored in the csv file "results.csv".
 
- As of 8th of April, the results show that:
- - a = 151000 ± 2000
- - b = 540 ± 50
- - c = 0.160 ± 0.003
+ As of 20th of April, the results show that:
+ - a = 184000 ± 3000
+ - b = 230 ± 30
+ - c = 0.130 ± 0.004
 
 # Disclaimers
 
