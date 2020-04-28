@@ -59,7 +59,7 @@ class plotData:
             print(colored("The following exception was catched: " + str(e), 'red'))
             print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
 
-    def plotTotalCases(self, table, groups, dates, datesInMillisecond, idx):
+    def plotTotalCases(self, table, groups, dates, datesInDays, idx):
         try:
             # DATA
             y = table.iloc[idx][1:]
@@ -72,15 +72,15 @@ class plotData:
                                         )
             if (groups[idx] == 'Total number of cases'):
                 f = fitting.fitData()
-                popt = f.plotLogistGrowthFit(datesInMillisecond, y)
-                ax_plt.plot(dates, f.sigmoid_1(datesInMillisecond, popt[0],
+                popt, popt2 = f.plotLogistGrowthFit(datesInDays, y)
+                ax_plt.plot(dates, f.sigmoid_1(datesInDays, popt[0],
                                                                     popt[1],
                                                                     popt[2]), color='orange', label="Logistic Growth model", zorder=50)
                 '''
-                ax_plt.plot(dates, f.sigmoid_2(datesInMillisecond, popt2[0],
+                ax_plt.plot(dates, f.sigmoid_2(datesInDays, popt2[0],
                                                                     popt2[1],
                                                                     popt2[2],
-                                                                    popt2[3]), color='yellow', label="Logistic Growth model 2", zorder=40)
+                                                                    popt2[3]), color='sienna', label="Logistic Growth model 2", zorder=40)
                 '''
                 ax_plt.legend(loc='lower right')
             ax_plt.axvspan(xmin = lockdownStartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)

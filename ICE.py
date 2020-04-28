@@ -1,7 +1,6 @@
 ################################################### PEER
 
 author = 'Roberto Bastone'
-email = 'robertobastone93@gmail.com'
 
 version = 1.06
 
@@ -15,21 +14,20 @@ class ICE:
     def __init__(self):
         print(colored("Initializing... Italy Covid19 Epidemic version " + str(version), 'blue'))
         print(colored("(Author: " + author+')', 'blue'))
-        print(colored("For info - or anything else - please, feel free to reach me at " + email, 'blue'))
 
     def main(self):
         try:
             l = loading.loadData()
             table_1, region, dates = l.activeCases()
-            table_2, groups, dates, datesInMillisecond = l.totalCases()
+            table_2, groups, dates, datesInDays = l.totalCases()
             print(colored("Loading completed.", 'blue'))
             p = plotting.plotData()
             for i in range(0,len(region)):
                 p.plotActiveCases(table_1, region, dates, i)
             for i in range(0,len(groups)):
-                p.plotTotalCases(table_2, groups, dates, datesInMillisecond, i)
+                p.plotTotalCases(table_2, groups, dates, datesInDays, i)
                 if (groups[i] == 'Total number of cases'):
-                    p.plotEvolutionOfSigmoidParameter(table_2.iloc[i][1:], datesInMillisecond)
+                    p.plotEvolutionOfSigmoidParameter(table_2.iloc[i][1:], datesInDays)
             print(colored("Fitting completed.", 'blue'))
             print(colored("Plotting completed.", 'blue'))
         except Exception as e:

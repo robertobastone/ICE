@@ -24,8 +24,8 @@ class fitData:
     def plotLogistGrowthFit(self,xdata,ydata):
         try:
             popt, pcov = curve_fit(self.sigmoid_1, xdata, ydata)
-            #popt2, pcov2 = curve_fit(self.sigmoid_2, xdata, ydata, bounds=([-np.inf,0,-np.inf, -np.inf],np.inf), maxfev=50000)
-            #print(colored(popt2, 'blue'))
+            # popt2, pcov2 = curve_fit(self.sigmoid_2, xdata, ydata, bounds=([0,-np.inf,-np.inf, -5],[np.inf,np.inf,np.inf, 0]), maxfev=500000)
+            # print(colored(popt, 'blue'))
             # pcov is the estimated covariance matrix of popt
             # the diagonals provide the variance of the parameter estimate
             perr = np.sqrt(np.diag(pcov))
@@ -37,7 +37,7 @@ class fitData:
                 for i in range(0,len(popt)):
                     filewriter.writerow([alphabet[i], popt[i], perr[i]])
             print(colored("Fitting completed", 'blue'))
-            return popt
+            return popt #, popt2
         except Exception as e:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             print(colored("The following exception was catched: " + str(e), 'red'))

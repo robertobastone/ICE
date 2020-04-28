@@ -34,24 +34,24 @@ class loadData:
             table = pd.read_excel(dataLocation,sheet_name='totalCases') # open table
             tableColumns = table.columns.ravel()
             dates = tableColumns[1:] # create dates array
-            datesInMillisecond = self.fromDatetimeToMillisecond(dates)
+            datesInDays = self.fromDatetimeDays(dates)
             region = table['Groups'] # create region array
-            return table, region, dates, datesInMillisecond
+            return table, region, dates, datesInDays
         except Exception as e:
             print(colored("The following exception was catched:" + str(e), 'red'))
             print(colored("Make sure you have " + dataLocation + " in the same directory of the ICE bundle.", 'red'))
 
-    def fromDatetimeToMillisecond(self, dates):
+    def fromDatetimeDays(self, dates):
         # cannot fit curve using dates, so we need to convert it
         # to floats
         try:
-            datesInMillisecond = []
+            datesInDays = []
             for i in range(0, len(dates)):
-                datesInMillisecond.append( (dates[i] - dates[0]).days + 20 )
+                datesInDays.append( (dates[i] - dates[0]).days + 20 )
                 # I have considered an initial offset, considering that
                 # the data I've collected starts on the 6th of March,
                 # but there already have been, by that date, numerous cases
-            return datesInMillisecond
+            return datesInDays
         except Exception as e:
             print(colored("The following exception was catched:" + str(e), 'red'))
             print(colored(str(exc_tb.tb_frame.f_code.co_filename) + " at  line " + str(exc_tb.tb_lineno), 'red'))
