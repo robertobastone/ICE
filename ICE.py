@@ -2,7 +2,7 @@
 
 author = 'Roberto Bastone'
 
-version = 1.06
+version = 1.07
 
 ######################### LIBRARIES #########################
 from termcolor import colored # customize ui

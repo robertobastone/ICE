@@ -17,10 +17,12 @@ class fitData:
         y = a / (1 + b * np.exp(c*np.negative(x)))
         return y
 
+    '''
     def sigmoid_2(self, x, a, b, c, e):
         y = a / (1 + b * np.exp(c * np.negative(x - e)))
         return y
-
+    '''
+    
     def plotLogistGrowthFit(self,xdata,ydata):
         try:
             popt, pcov = curve_fit(self.sigmoid_1, xdata, ydata)

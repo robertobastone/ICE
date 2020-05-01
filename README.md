@@ -41,6 +41,8 @@ This is not meant to be a predictive model, I would not dare to be so arrogant t
 - Added cured, deceases and total number of cases (active cases + cured + deceased). The logistic fit is now done on the former data and managed in a different package.
 ### Version 1.06 (April, 5 2020)
 - Added plot of the evolution of the sigmoid parameters starting from the 17th day from the beginning of the data I have collected.
+### Version 1.07 (May, 1 2020)
+- Minor aesthetic changes in plots visualization
 
 # How to run the script
 ## From terminal

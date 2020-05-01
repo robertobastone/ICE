@@ -7,8 +7,8 @@ from termcolor import colored # customize ui
 from datetime import datetime # managing datatime records
 import fitData as fitting
 
-lockdown = 'Italy national lockdown'
-lockdownStartDate = datetime(2020,3,9)
+phase1 = 'Italy national phase1 - phase 1'
+phase1StartDate = datetime(2020,3,9)
 
 class plotData:
 
@@ -27,20 +27,23 @@ class plotData:
                                                             figsize=(12, 20)
                                                          )
             # FIRST SUBPLOT: TOTAL CASES VS TIME
-            ax_plt.axvspan(xmin = lockdownStartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_plt.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
             ax_plt.plot(dates, y, zorder=5)
             ax_plt.scatter(dates, y, zorder=10)
             ax_plt.set_ylabel("Cases (ICU + hospitalised + self-quarantined)", fontsize=15)
-            ax_plt.text(lockdownStartDate, table.iloc[idx][-1], lockdown)
+            ax_plt.text(phase1StartDate, table.iloc[idx][-1], phase1)
+            ax_plt.set_ylim(bottom=0)
             # SECOND SUBPLOT: DAILY INCREMENT VS TIME
-            ax_abs.axvspan(xmin = lockdownStartDate, xmax= dates[-1], ymin = 0, ymax = 1e3, alpha=0.125, color='r', zorder=0)
+            ax_abs.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 1e3, alpha=0.125, color='r', zorder=0)
             ax_abs.plot(x2,y2,zorder=5)
             ax_abs.scatter(x2,y2, zorder=10)
+            ax_abs.axhline(y=0, color = 'black')
             ax_abs.set_ylabel("Daily Increment", fontsize=15)
             # THIRD SUBPLOT: RELATIVE DAILY INCREMENT (%) VS TIME
-            ax_incr.axvspan(xmin = lockdownStartDate, xmax= dates[-1], ymin = 0, ymax = 1e3, alpha=0.125, color='r', zorder=0)
+            ax_incr.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 1e3, alpha=0.125, color='r', zorder=0)
             ax_incr.plot(x2,y3,zorder=5)
             ax_incr.scatter(x2,y3, zorder=10)
+            ax_incr.axhline(y=0, color = 'black')
             ax_incr.set_ylabel("Relative Daily Increment (%)", fontsize=15)
             # SHARED PLOT SETTINGS
             ax_plt.set_title(region[idx], fontsize=20)
@@ -72,7 +75,7 @@ class plotData:
                                         )
             if (groups[idx] == 'Total number of cases'):
                 f = fitting.fitData()
-                popt, popt2 = f.plotLogistGrowthFit(datesInDays, y)
+                popt = f.plotLogistGrowthFit(datesInDays, y)
                 ax_plt.plot(dates, f.sigmoid_1(datesInDays, popt[0],
                                                                     popt[1],
                                                                     popt[2]), color='orange', label="Logistic Growth model", zorder=50)
@@ -83,12 +86,13 @@ class plotData:
                                                                     popt2[3]), color='sienna', label="Logistic Growth model 2", zorder=40)
                 '''
                 ax_plt.legend(loc='lower right')
-            ax_plt.axvspan(xmin = lockdownStartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_plt.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
             ax_plt.plot(dates, y, zorder=5)
             ax_plt.scatter(dates, y, zorder=10)
             ax_plt.set_ylabel("Total", fontsize=15)
             ax_plt.set_xlabel("Days", fontsize=15)
-            ax_plt.text(lockdownStartDate, table.iloc[idx][-1], lockdown)
+            ax_plt.set_ylim(bottom=0)
+            ax_plt.text(phase1StartDate, table.iloc[idx][-1], phase1)
             ax_plt.set_title(groups[idx], fontsize=20)
             ax_plt.xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
             plt.setp(ax_plt.get_xticklabels(), rotation=40, horizontalalignment='right')
