@@ -7,8 +7,11 @@ from termcolor import colored # customize ui
 from datetime import datetime # managing datatime records
 import fitData as fitting
 
-phase1 = 'Italy national phase1 - phase 1'
+phase1 = 'Phase 1: national lockdown'
 phase1StartDate = datetime(2020,3,9)
+phase2 = 'Phase 2: partial re-opening'
+phase2StartDate = datetime(2020,5,4)
+
 
 class plotData:
 
@@ -27,20 +30,24 @@ class plotData:
                                                             figsize=(12, 20)
                                                          )
             # FIRST SUBPLOT: TOTAL CASES VS TIME
-            ax_plt.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_plt.axvspan(xmin = phase1StartDate, xmax= phase2StartDate, ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_plt.axvspan(xmin = phase2StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='orange', zorder=0)
             ax_plt.plot(dates, y, zorder=5)
             ax_plt.scatter(dates, y, zorder=10)
             ax_plt.set_ylabel("Cases (ICU + hospitalised + self-quarantined)", fontsize=15)
-            ax_plt.text(phase1StartDate, table.iloc[idx][-1], phase1)
+            ax_plt.text(phase1StartDate, table.iloc[idx][-5], phase1, fontsize=13)
+            ax_plt.text(phase2StartDate, table.iloc[idx][-5], phase2, fontsize=13)
             ax_plt.set_ylim(bottom=0)
             # SECOND SUBPLOT: DAILY INCREMENT VS TIME
-            ax_abs.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 1e3, alpha=0.125, color='r', zorder=0)
+            ax_abs.axvspan(xmin = phase1StartDate, xmax= phase2StartDate, ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_abs.axvspan(xmin = phase2StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='orange', zorder=0)
             ax_abs.plot(x2,y2,zorder=5)
             ax_abs.scatter(x2,y2, zorder=10)
             ax_abs.axhline(y=0, color = 'black')
             ax_abs.set_ylabel("Daily Increment", fontsize=15)
             # THIRD SUBPLOT: RELATIVE DAILY INCREMENT (%) VS TIME
-            ax_incr.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 1e3, alpha=0.125, color='r', zorder=0)
+            ax_incr.axvspan(xmin = phase1StartDate, xmax= phase2StartDate, ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_incr.axvspan(xmin = phase2StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='orange', zorder=0)
             ax_incr.plot(x2,y3,zorder=5)
             ax_incr.scatter(x2,y3, zorder=10)
             ax_incr.axhline(y=0, color = 'black')
@@ -86,13 +93,15 @@ class plotData:
                                                                     popt2[3]), color='sienna', label="Logistic Growth model 2", zorder=40)
                 '''
                 ax_plt.legend(loc='lower right')
-            ax_plt.axvspan(xmin = phase1StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_plt.axvspan(xmin = phase1StartDate, xmax= phase2StartDate, ymin = 0, ymax = 2e3, alpha=0.125, color='r', zorder=0)
+            ax_plt.axvspan(xmin = phase2StartDate, xmax= dates[-1], ymin = 0, ymax = 2e3, alpha=0.125, color='orange', zorder=0)
             ax_plt.plot(dates, y, zorder=5)
             ax_plt.scatter(dates, y, zorder=10)
             ax_plt.set_ylabel("Total", fontsize=15)
             ax_plt.set_xlabel("Days", fontsize=15)
             ax_plt.set_ylim(bottom=0)
-            ax_plt.text(phase1StartDate, table.iloc[idx][-1], phase1)
+            ax_plt.text(phase1StartDate, table.iloc[idx][-5], phase1, fontsize=13)
+            ax_plt.text(phase2StartDate, table.iloc[idx][-5], phase2, fontsize=13)
             ax_plt.set_title(groups[idx], fontsize=20)
             ax_plt.xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
             plt.setp(ax_plt.get_xticklabels(), rotation=40, horizontalalignment='right')
